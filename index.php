@@ -39,7 +39,7 @@ $totalPax = array_sum(array_column($currentGuests, 'pax'));
 <body>
     <div class="container">
         <!-- Event Name and Date -->
-        <h1>Jadi Majlis Pernikahan Fikri dan Syahirah</h1>
+        <h1>Jadi ke Majlis Pernikahan Fikri dan Syahirah</h1>
         <p class="event-date">3 December 2024</p>
 
         <div class="summary">
