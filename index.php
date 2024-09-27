@@ -17,10 +17,16 @@ $sql = "SELECT nama, phone, attendance, pax FROM rsvp LIMIT $offset, $limit";  /
 $result = $conn->query($sql);
 $currentGuests = $result->fetch_all(MYSQLI_ASSOC);
 
-// Count RSVP statuses and total pax
-$rsvpYes = count(array_filter($currentGuests, fn($g) => $g['attendance'] == 'yes'));
-$rsvpNo = count(array_filter($currentGuests, fn($g) => $g['attendance'] == 'no'));
-$totalPax = array_sum(array_column($currentGuests, 'pax'));
+// Query to get the overall count of RSVPs for 'yes' and 'no'
+$rsvpYesResult = $conn->query("SELECT COUNT(*) AS rsvpYes FROM rsvp WHERE attendance = 'yes'");
+$rsvpYes = $rsvpYesResult->fetch_assoc()['rsvpYes'];
+
+$rsvpNoResult = $conn->query("SELECT COUNT(*) AS rsvpNo FROM rsvp WHERE attendance = 'no'");
+$rsvpNo = $rsvpNoResult->fetch_assoc()['rsvpNo'];
+
+// Query to calculate the total pax for all guests
+$totalPaxResult = $conn->query("SELECT SUM(pax) AS totalPax FROM rsvp");
+$totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
 ?>
 
 <!DOCTYPE html>
