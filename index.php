@@ -18,8 +18,8 @@ $result = $conn->query($sql);
 $currentGuests = $result->fetch_all(MYSQLI_ASSOC);
 
 // Count RSVP statuses and total pax
-$rsvpYes = count(array_filter($currentGuests, fn($g) => $g['attendance'] == 'Yes'));
-$rsvpNo = count(array_filter($currentGuests, fn($g) => $g['attendance'] == 'No'));
+$rsvpYes = count(array_filter($currentGuests, fn($g) => $g['attendance'] == 'yes'));
+$rsvpNo = count(array_filter($currentGuests, fn($g) => $g['attendance'] == 'no'));
 $totalPax = array_sum(array_column($currentGuests, 'pax'));
 ?>
 
