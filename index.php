@@ -1,25 +1,18 @@
 <?php
-// Updated sample data for guests
-$guests = [
-    ['name' => 'John Doe', 'phone' => '123-456-7890', 'rsvp' => 'Yes', 'pax' => 2],
-    ['name' => 'Jane Smith', 'phone' => '098-765-4321', 'rsvp' => 'No', 'pax' => 1],
-    ['name' => 'Alice Johnson', 'phone' => '555-123-4567', 'rsvp' => 'No', 'pax' => 0],
-    ['name' => 'Bob Brown', 'phone' => '444-789-1234', 'rsvp' => 'Yes', 'pax' => 3],
-    ['name' => 'Charlie White', 'phone' => '333-222-1111', 'rsvp' => 'Yes', 'pax' => 4],
-    ['name' => 'Diana Green', 'phone' => '222-333-4444', 'rsvp' => 'No', 'pax' => 1],
-    ['name' => 'Ethan Black', 'phone' => '666-777-8888', 'rsvp' => 'Yes', 'pax' => 5],
-    ['name' => 'Fiona Red', 'phone' => '999-888-7777', 'rsvp' => 'No', 'pax' => 2],
-];
-
 // Pagination settings
 $limit = 5; // Number of guests per page
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page number
-$totalGuests = count($guests); // Total number of guests
-$totalPages = ceil($totalGuests / $limit); // Total number of pages
-$offset = ($page - 1) * $limit; // Calculate the offset for SQL-like pagination
+$offset = ($page - 1) * $limit; // Calculate the offset for pagination
 
-// Slice the guests array for the current page
-$currentGuests = array_slice($guests, $offset, $limit);
+// Query to fetch total guest count
+$totalResult = $conn->query("SELECT COUNT(*) AS total FROM your_table_name"); // replace with your table name
+$totalGuests = $totalResult->fetch_assoc()['total']; // Total number of guests
+$totalPages = ceil($totalGuests / $limit); // Total number of pages
+
+// Query to fetch the guests for the current page
+$sql = "SELECT name, phone, rsvp, pax FROM your_table_name LIMIT $offset, $limit";  // replace with your table name
+$result = $conn->query($sql);
+$currentGuests = $result->fetch_all(MYSQLI_ASSOC);
 
 // Count RSVP statuses and total pax
 $rsvpYes = count(array_filter($currentGuests, fn($g) => $g['rsvp'] == 'Yes'));
