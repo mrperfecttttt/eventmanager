@@ -70,7 +70,7 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
                                 <?php echo htmlspecialchars($guest['nama']); ?>
                             </td>
                             <td><?php echo htmlspecialchars($guest['phone']); ?></td>
-                            <td><?php echo htmlspecialchars($guest['pax']); ?></td>
+                            <td><?php echo htmlspecialchars($guest['pax']); ?> Person</td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

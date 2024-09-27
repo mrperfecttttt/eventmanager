@@ -8,7 +8,7 @@ $result = $conn->query($sql);
 
 // Set headers to force download
 header("Content-Type: application/vnd.ms-excel");
-header("Content-Disposition: attachment;filename=\"guest_list.xls\"");
+header("Content-Disposition: attachment;filename=\"guest_list.xls\""); 
 header("Cache-Control: max-age=0");
 
 // Output Excel table headers
@@ -17,7 +17,8 @@ echo "Name\tPhone\tEmail\tAttendance\tPax\n";
 // Output data rows
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        echo $row['nama'] . "\t" . $row['phone'] . "\t" . $row['email'] . "\t" . $row['attendance'] . "\t" . $row['pax'] . "\n";
+        // Use tab-delimited format and ensure phone numbers are treated as text
+        echo $row['nama'] . "\t" . '"' . $row['phone'] . '"' . "\t" . $row['email'] . "\t" . $row['attendance'] . "\t" . $row['pax'] . "\n";
     }
 } else {
     echo "No data found.\n";
