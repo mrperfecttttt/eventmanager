@@ -60,7 +60,7 @@ $totalPax = array_sum(array_column($currentGuests, 'pax'));
                     <?php foreach ($currentGuests as $guest): ?>
                         <tr>
                             <td>
-                                <span class="<?php echo strtolower($guest['attendance']); ?>" style="display:inline-block; width:10px; height:10px; border-radius:50%; margin-right: 5px; background-color: <?php echo $guest['attendance'] == 'Yes' ? 'green' : 'red'; ?>;"></span>
+                                <span class="<?php echo strtolower($guest['attendance']); ?>" style="display:inline-block; width:10px; height:10px; border-radius:50%; margin-right: 5px; background-color: <?php echo $guest['attendance'] == 'yes' ? 'green' : 'red'; ?>;"></span>
                                 <?php echo htmlspecialchars($guest['nama']); ?>
                             </td>
                             <td><?php echo htmlspecialchars($guest['phone']); ?></td>
