@@ -1,16 +1,19 @@
 <?php
+// Include the database connection file
+include 'db_connect.php';  // This will establish the connection
+
 // Pagination settings
 $limit = 5; // Number of guests per page
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page number
 $offset = ($page - 1) * $limit; // Calculate the offset for pagination
 
 // Query to fetch total guest count
-$totalResult = $conn->query("SELECT COUNT(*) AS total FROM your_table_name"); // replace with your table name
+$totalResult = $conn->query("SELECT COUNT(*) AS total FROM rsvp"); // replace 'rsvp' with your table name
 $totalGuests = $totalResult->fetch_assoc()['total']; // Total number of guests
 $totalPages = ceil($totalGuests / $limit); // Total number of pages
 
 // Query to fetch the guests for the current page
-$sql = "SELECT name, phone, rsvp, pax FROM your_table_name LIMIT $offset, $limit";  // replace with your table name
+$sql = "SELECT name, phone, rsvp, pax FROM rsvp LIMIT $offset, $limit";  // replace 'rsvp' with your table name
 $result = $conn->query($sql);
 $currentGuests = $result->fetch_all(MYSQLI_ASSOC);
 
@@ -74,7 +77,13 @@ $totalPax = array_sum(array_column($currentGuests, 'pax'));
             <?php endfor; ?>
         </div>
 
+        <!-- Link to export the data to Excel using your existing export.php -->
         <a href="export.php" class="export-btn">Export to Excel</a>
     </div>
 </body>
 </html>
+
+<?php
+// Close the connection
+$conn->close();
+?>

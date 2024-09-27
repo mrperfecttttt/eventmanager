@@ -1,6 +1,9 @@
 <?php
+// Include the database connection file
+include 'db_connect.php';  // This will establish the connection
+
 // Query to fetch data from the table
-$sql = "SELECT name, phone, email, attendance, pax FROM your_table_name";  // replace with your table name
+$sql = "SELECT name, phone, email, attendance, pax FROM rsvp";  // replace with your table name
 $result = $conn->query($sql);
 
 // Set headers to force download
