@@ -3,7 +3,7 @@
 include 'db_connect.php';  // This will establish the connection
 
 // Query to fetch data from the table
-$sql = "SELECT name, phone, email, attendance, pax FROM rsvp";  // replace with your table name
+$sql = "SELECT nama, phone, email, attendance, pax FROM rsvp";  // replace with your table name
 $result = $conn->query($sql);
 
 // Set headers to force download
@@ -17,7 +17,7 @@ echo "Name\tPhone\tEmail\tAttendance\tPax\n";
 // Output data rows
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        echo $row['name'] . "\t" . $row['phone'] . "\t" . $row['email'] . "\t" . $row['attendance'] . "\t" . $row['pax'] . "\n";
+        echo $row['nama'] . "\t" . $row['phone'] . "\t" . $row['email'] . "\t" . $row['attendance'] . "\t" . $row['pax'] . "\n";
     }
 } else {
     echo "No data found.\n";
