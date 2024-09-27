@@ -13,13 +13,13 @@ $totalGuests = $totalResult->fetch_assoc()['total']; // Total number of guests
 $totalPages = ceil($totalGuests / $limit); // Total number of pages
 
 // Query to fetch the guests for the current page
-$sql = "SELECT name, phone, rsvp, pax FROM rsvp LIMIT $offset, $limit";  // replace 'rsvp' with your table name
+$sql = "SELECT name, phone, attendance, pax FROM rsvp LIMIT $offset, $limit";  // replace 'rsvp' with your table name
 $result = $conn->query($sql);
 $currentGuests = $result->fetch_all(MYSQLI_ASSOC);
 
 // Count RSVP statuses and total pax
-$rsvpYes = count(array_filter($currentGuests, fn($g) => $g['rsvp'] == 'Yes'));
-$rsvpNo = count(array_filter($currentGuests, fn($g) => $g['rsvp'] == 'No'));
+$rsvpYes = count(array_filter($currentGuests, fn($g) => $g['attendance'] == 'Yes'));
+$rsvpNo = count(array_filter($currentGuests, fn($g) => $g['attendance'] == 'No'));
 $totalPax = array_sum(array_column($currentGuests, 'pax'));
 ?>
 
@@ -60,7 +60,7 @@ $totalPax = array_sum(array_column($currentGuests, 'pax'));
                     <?php foreach ($currentGuests as $guest): ?>
                         <tr>
                             <td>
-                                <span class="<?php echo strtolower($guest['rsvp']); ?>" style="display:inline-block; width:10px; height:10px; border-radius:50%; margin-right: 5px; background-color: <?php echo $guest['rsvp'] == 'Yes' ? 'green' : 'red'; ?>;"></span>
+                                <span class="<?php echo strtolower($guest['attendance']); ?>" style="display:inline-block; width:10px; height:10px; border-radius:50%; margin-right: 5px; background-color: <?php echo $guest['rsvp'] == 'Yes' ? 'green' : 'red'; ?>;"></span>
                                 <?php echo htmlspecialchars($guest['name']); ?>
                             </td>
                             <td><?php echo htmlspecialchars($guest['phone']); ?></td>
