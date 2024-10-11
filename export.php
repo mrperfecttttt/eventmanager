@@ -35,7 +35,7 @@ if ($result2->num_rows > 0) {
 }
 
 // Output the generated PDF to the browser
-$pdf->Output('I', 'guest_list.pdf');  // 'D' forces the download of the PDF
+$pdf->Output('D', 'guest_list.pdf');  // 'D' forces the download of the PDF
 
 // Close the connection
 $conn->close();
