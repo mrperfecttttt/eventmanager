@@ -17,17 +17,17 @@ $pdf->Cell(20, 10, 'Pax', 1);
 $pdf->Ln();  // Line break
 
 // Query to fetch data from the table
-$sql = "SELECT nama, phone, email, attendance, pax FROM rsvp";  // replace with your table name
-$result = $conn->query($sql);
+$sql2 = "SELECT nama, phone, email, attendance, pax FROM rsvp";  // replace with your table name
+$result2 = $conn->query($sql);
 
 // Output data rows
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $pdf->Cell(40, 10, $row['nama'], 1);
-        $pdf->Cell(40, 10, $row['phone'], 1);
-        $pdf->Cell(60, 10, $row['email'], 1);
-        $pdf->Cell(30, 10, $row['attendance'], 1);
-        $pdf->Cell(20, 10, $row['pax'], 1);
+if ($result2->num_rows > 0) {
+    while ($row2 = $result->fetch_assoc()) {
+        $pdf->Cell(40, 10, $row2['nama'], 1);
+        $pdf->Cell(40, 10, $row2['phone'], 1);
+        $pdf->Cell(60, 10, $row2['email'], 1);
+        $pdf->Cell(30, 10, $row2['attendance'], 1);
+        $pdf->Cell(20, 10, $row2['pax'], 1);
         $pdf->Ln();  // Line break
     }
 } else {
