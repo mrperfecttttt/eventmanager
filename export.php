@@ -1,6 +1,6 @@
 <?php
 // Include the FPDF library and database connection
-require('fpdf/fpdf.php');
+require('fpdf.php');
 include 'db_connect.php';  // This will establish the connection
 
 // Create instance of FPDF
