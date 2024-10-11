@@ -83,8 +83,8 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
             <?php endfor; ?>
         </div>
 
-        <!-- Link to export the data to Excel using your existing export.php -->
-        <a href="export.php" class="export-btn">Export to Excel</a>
+        <!-- Link to export the data to Pdf using your existing export.php -->
+        <a href="export.php" class="export-btn">Export to PDF</a>
     </div>
 </body>
 </html>
