@@ -1,49 +1,49 @@
 <?php
-// Include the DOMPDF library
-require 'dompdf/autoload.inc.php'; // Adjust the path if necessary
+// Include the FPDF library
+require('fpdf/fpdf.php');
+include 'db_connect.php';  // This is your database connection
 
-use Dompdf\Dompdf;
+// Create a new instance of the FPDF class
+$pdf = new FPDF();
+$pdf->AddPage();
 
-// Include the database connection
-include 'db_connect.php';
+// Set title and meta
+$pdf->SetFont('Arial', 'B', 16);
+$pdf->Cell(190, 10, 'Majlis Pernikahan Fikri dan Syahirah - RSVP List', 0, 1, 'C');
+$pdf->Ln(5);  // Line break
 
-// Create new DOMPDF instance
-$dompdf = new Dompdf();
+$pdf->SetFont('Arial', '', 12);
+$pdf->Cell(190, 10, 'Event Date: 3 December 2024', 0, 1, 'C');
+$pdf->Ln(10);
 
-// Fetch data from database
-$sql = "SELECT nama, phone, email, attendance, pax FROM rsvp"; // Replace 'rsvp' with your table name
+// Fetch RSVP data from the database
+$sql = "SELECT nama, phone, attendance, pax FROM rsvp";
 $result = $conn->query($sql);
 
-// Start building HTML content for the PDF
-$html = '<h1 style="text-align: center;">RSVP Guest List</h1>';
-$html .= '<table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse;">';
-$html .= '<thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Attendance</th><th>Pax</th></tr></thead><tbody>';
+if ($result->num_rows > 0) {
+    // Set table headers
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->Cell(60, 10, 'Name', 1);
+    $pdf->Cell(60, 10, 'Phone', 1);
+    $pdf->Cell(30, 10, 'Attendance', 1);
+    $pdf->Cell(30, 10, 'Pax', 1);
+    $pdf->Ln();
 
-// Populate table with data
-while ($row = $result->fetch_assoc()) {
-    $html .= '<tr>';
-    $html .= '<td>' . htmlspecialchars($row['nama']) . '</td>';
-    $html .= '<td>' . htmlspecialchars($row['phone']) . '</td>';
-    $html .= '<td>' . htmlspecialchars($row['email']) . '</td>';
-    $html .= '<td>' . ucfirst(htmlspecialchars($row['attendance'])) . '</td>';
-    $html .= '<td>' . htmlspecialchars($row['pax']) . '</td>';
-    $html .= '</tr>';
+    // Output the data row by row
+    while ($row = $result->fetch_assoc()) {
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Cell(60, 10, $row['nama'], 1);
+        $pdf->Cell(60, 10, $row['phone'], 1);
+        $pdf->Cell(30, 10, ucfirst($row['attendance']), 1);  // Capitalize 'yes' or 'no'
+        $pdf->Cell(30, 10, $row['pax'], 1);
+        $pdf->Ln();
+    }
+} else {
+    $pdf->Cell(190, 10, 'No RSVP data found.', 1, 1, 'C');
 }
 
-$html .= '</tbody></table>';
-
-// Load HTML into DOMPDF
-$dompdf->loadHtml($html);
-
-// (Optional) Set the paper size and orientation
-$dompdf->setPaper('A4', 'portrait');
-
-// Render the HTML as PDF
-$dompdf->render();
-
-// Output the generated PDF to the browser
-$dompdf->stream('RSVP_Guest_List.pdf', ['Attachment' => 1]);
-
-// Close the connection
+// Close the database connection
 $conn->close();
-?>
+
+// Output the PDF to the browser
+$pdf->Output('D', 'RSVP_List.pdf');
