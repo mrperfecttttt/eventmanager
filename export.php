@@ -65,16 +65,16 @@ $resultYes = $conn->query($sqlYes);
 
 if ($resultYes->num_rows > 0) {
     // Set table headers and center the table
-    $pdf->SetX($marginLeft);
+    $pdf->SetX($marginLeft);  // Center table on page
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell($columnWidths[0], 10, 'Name', 1);
     $pdf->Cell($columnWidths[1], 10, 'Phone', 1);
     $pdf->Cell($columnWidths[2], 10, 'Pax', 1);
     $pdf->Ln();
 
-    // Output the data row by row
+    // Output the data row by row and keep table centered
     while ($row = $resultYes->fetch_assoc()) {
-        $pdf->SetX($marginLeft);
+        $pdf->SetX($marginLeft);  // Reset X position for each row
         $pdf->SetFont('Arial', '', 12);
         $pdf->Cell($columnWidths[0], 10, $row['nama'], 1);
         $pdf->Cell($columnWidths[1], 10, $row['phone'], 1);
