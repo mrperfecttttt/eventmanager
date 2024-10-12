@@ -16,12 +16,17 @@ $pdf->SetFont('Arial', '', 12);
 $pdf->Cell(190, 10, 'Event Date: 3 December 2024', 0, 1, 'C');
 $pdf->Ln(10);
 
+// Table properties
+$tableWidth = 180;  // Total width of the table (sum of column widths)
+$marginLeft = (210 - $tableWidth) / 2;  // Center the table on an A4 page (210mm width)
+
 // Fetch all RSVP data
 $sqlAll = "SELECT nama, phone, attendance, pax FROM rsvp";
 $resultAll = $conn->query($sqlAll);
 
 if ($resultAll->num_rows > 0) {
-    // Set table headers
+    // Set table headers and center the table
+    $pdf->SetX($marginLeft);
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(60, 10, 'Name', 1);
     $pdf->Cell(60, 10, 'Phone', 1);
@@ -29,8 +34,9 @@ if ($resultAll->num_rows > 0) {
     $pdf->Cell(30, 10, 'Pax', 1);
     $pdf->Ln();
 
-    // Output the data row by row
+    // Output the data row by row and center the rows
     while ($row = $resultAll->fetch_assoc()) {
+        $pdf->SetX($marginLeft);  // Reset X position to marginLeft to keep the table centered
         $pdf->SetFont('Arial', '', 12);
         $pdf->Cell(60, 10, $row['nama'], 1);
         $pdf->Cell(60, 10, $row['phone'], 1);
@@ -57,7 +63,8 @@ $sqlYes = "SELECT nama, phone, pax FROM rsvp WHERE attendance = 'yes'";
 $resultYes = $conn->query($sqlYes);
 
 if ($resultYes->num_rows > 0) {
-    // Set table headers
+    // Set table headers and center the table
+    $pdf->SetX($marginLeft);
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(60, 10, 'Name', 1);
     $pdf->Cell(60, 10, 'Phone', 1);
@@ -66,6 +73,7 @@ if ($resultYes->num_rows > 0) {
 
     // Output the data row by row
     while ($row = $resultYes->fetch_assoc()) {
+        $pdf->SetX($marginLeft);
         $pdf->SetFont('Arial', '', 12);
         $pdf->Cell(60, 10, $row['nama'], 1);
         $pdf->Cell(60, 10, $row['phone'], 1);
@@ -91,7 +99,8 @@ $sqlNo = "SELECT nama, phone, pax FROM rsvp WHERE attendance = 'no'";
 $resultNo = $conn->query($sqlNo);
 
 if ($resultNo->num_rows > 0) {
-    // Set table headers
+    // Set table headers and center the table
+    $pdf->SetX($marginLeft);
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(60, 10, 'Name', 1);
     $pdf->Cell(60, 10, 'Phone', 1);
@@ -100,6 +109,7 @@ if ($resultNo->num_rows > 0) {
 
     // Output the data row by row
     while ($row = $resultNo->fetch_assoc()) {
+        $pdf->SetX($marginLeft);
         $pdf->SetFont('Arial', '', 12);
         $pdf->Cell(60, 10, $row['nama'], 1);
         $pdf->Cell(60, 10, $row['phone'], 1);
