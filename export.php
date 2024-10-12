@@ -1,26 +1,26 @@
 <?php
 // Include the FPDF library
 require('fpdf/fpdf.php');
-include 'db_connect.php';  // This is your database connection
+include 'db_connect.php';  // Database connection
 
 // Create a new instance of the FPDF class
 $pdf = new FPDF();
 $pdf->AddPage();
 
-// Set title and meta
+// Set title and meta for the first page (All guests)
 $pdf->SetFont('Arial', 'B', 16);
-$pdf->Cell(190, 10, 'Majlis Pernikahan Fikri dan Syahirah - RSVP List', 0, 1, 'C');
+$pdf->Cell(190, 10, 'Majlis Pernikahan Fikri dan Syahirah - RSVP List (All Guests)', 0, 1, 'C');
 $pdf->Ln(5);  // Line break
 
 $pdf->SetFont('Arial', '', 12);
 $pdf->Cell(190, 10, 'Event Date: 3 December 2024', 0, 1, 'C');
 $pdf->Ln(10);
 
-// Fetch RSVP data from the database
-$sql = "SELECT nama, phone, attendance, pax FROM rsvp";
-$result = $conn->query($sql);
+// Fetch all RSVP data
+$sqlAll = "SELECT nama, phone, attendance, pax FROM rsvp";
+$resultAll = $conn->query($sqlAll);
 
-if ($result->num_rows > 0) {
+if ($resultAll->num_rows > 0) {
     // Set table headers
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(60, 10, 'Name', 1);
@@ -30,7 +30,7 @@ if ($result->num_rows > 0) {
     $pdf->Ln();
 
     // Output the data row by row
-    while ($row = $result->fetch_assoc()) {
+    while ($row = $resultAll->fetch_assoc()) {
         $pdf->SetFont('Arial', '', 12);
         $pdf->Cell(60, 10, $row['nama'], 1);
         $pdf->Cell(60, 10, $row['phone'], 1);
@@ -42,8 +42,77 @@ if ($result->num_rows > 0) {
     $pdf->Cell(190, 10, 'No RSVP data found.', 1, 1, 'C');
 }
 
+// Page 2: Guests who will attend (attendance = 'yes')
+$pdf->AddPage();
+$pdf->SetFont('Arial', 'B', 16);
+$pdf->Cell(190, 10, 'RSVP - Guests Who Will Attend', 0, 1, 'C');
+$pdf->Ln(5);
+
+$pdf->SetFont('Arial', '', 12);
+$pdf->Cell(190, 10, 'These guests have RSVP-ed with "Yes".', 0, 1, 'C');
+$pdf->Ln(10);
+
+// Fetch RSVP data where attendance = 'yes'
+$sqlYes = "SELECT nama, phone, pax FROM rsvp WHERE attendance = 'yes'";
+$resultYes = $conn->query($sqlYes);
+
+if ($resultYes->num_rows > 0) {
+    // Set table headers
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->Cell(60, 10, 'Name', 1);
+    $pdf->Cell(60, 10, 'Phone', 1);
+    $pdf->Cell(30, 10, 'Pax', 1);
+    $pdf->Ln();
+
+    // Output the data row by row
+    while ($row = $resultYes->fetch_assoc()) {
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Cell(60, 10, $row['nama'], 1);
+        $pdf->Cell(60, 10, $row['phone'], 1);
+        $pdf->Cell(30, 10, $row['pax'], 1);
+        $pdf->Ln();
+    }
+} else {
+    $pdf->Cell(190, 10, 'No guests will attend.', 1, 1, 'C');
+}
+
+// Page 3: Guests who will NOT attend (attendance = 'no')
+$pdf->AddPage();
+$pdf->SetFont('Arial', 'B', 16);
+$pdf->Cell(190, 10, 'RSVP - Guests Who Will Not Attend', 0, 1, 'C');
+$pdf->Ln(5);
+
+$pdf->SetFont('Arial', '', 12);
+$pdf->Cell(190, 10, 'These guests have RSVP-ed with "No".', 0, 1, 'C');
+$pdf->Ln(10);
+
+// Fetch RSVP data where attendance = 'no'
+$sqlNo = "SELECT nama, phone, pax FROM rsvp WHERE attendance = 'no'";
+$resultNo = $conn->query($sqlNo);
+
+if ($resultNo->num_rows > 0) {
+    // Set table headers
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->Cell(60, 10, 'Name', 1);
+    $pdf->Cell(60, 10, 'Phone', 1);
+    $pdf->Cell(30, 10, 'Pax', 1);
+    $pdf->Ln();
+
+    // Output the data row by row
+    while ($row = $resultNo->fetch_assoc()) {
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Cell(60, 10, $row['nama'], 1);
+        $pdf->Cell(60, 10, $row['phone'], 1);
+        $pdf->Cell(30, 10, $row['pax'], 1);
+        $pdf->Ln();
+    }
+} else {
+    $pdf->Cell(190, 10, 'No guests have RSVP-ed "No".', 1, 1, 'C');
+}
+
 // Close the database connection
 $conn->close();
 
 // Output the PDF to the browser
 $pdf->Output('D', 'RSVP_List.pdf');
+?>
