@@ -17,7 +17,8 @@ $pdf->Cell(190, 10, 'Event Date: 3 December 2024', 0, 1, 'C');
 $pdf->Ln(10);
 
 // Table properties
-$tableWidth = 180;  // Total width of the table (sum of column widths)
+$columnWidths = [60, 60, 30, 30];  // Define the width of each column
+$tableWidth = array_sum($columnWidths);  // Total width of the table
 $marginLeft = (210 - $tableWidth) / 2;  // Center the table on an A4 page (210mm width)
 
 // Fetch all RSVP data
@@ -28,20 +29,20 @@ if ($resultAll->num_rows > 0) {
     // Set table headers and center the table
     $pdf->SetX($marginLeft);
     $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(60, 10, 'Name', 1);
-    $pdf->Cell(60, 10, 'Phone', 1);
-    $pdf->Cell(30, 10, 'Attendance', 1);
-    $pdf->Cell(30, 10, 'Pax', 1);
+    $pdf->Cell($columnWidths[0], 10, 'Name', 1);
+    $pdf->Cell($columnWidths[1], 10, 'Phone', 1);
+    $pdf->Cell($columnWidths[2], 10, 'Attendance', 1);
+    $pdf->Cell($columnWidths[3], 10, 'Pax', 1);
     $pdf->Ln();
 
     // Output the data row by row and center the rows
     while ($row = $resultAll->fetch_assoc()) {
         $pdf->SetX($marginLeft);  // Reset X position to marginLeft to keep the table centered
         $pdf->SetFont('Arial', '', 12);
-        $pdf->Cell(60, 10, $row['nama'], 1);
-        $pdf->Cell(60, 10, $row['phone'], 1);
-        $pdf->Cell(30, 10, ucfirst($row['attendance']), 1);  // Capitalize 'yes' or 'no'
-        $pdf->Cell(30, 10, $row['pax'], 1);
+        $pdf->Cell($columnWidths[0], 10, $row['nama'], 1);
+        $pdf->Cell($columnWidths[1], 10, $row['phone'], 1);
+        $pdf->Cell($columnWidths[2], 10, ucfirst($row['attendance']), 1);  // Capitalize 'yes' or 'no'
+        $pdf->Cell($columnWidths[3], 10, $row['pax'], 1);
         $pdf->Ln();
     }
 } else {
@@ -66,18 +67,18 @@ if ($resultYes->num_rows > 0) {
     // Set table headers and center the table
     $pdf->SetX($marginLeft);
     $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(60, 10, 'Name', 1);
-    $pdf->Cell(60, 10, 'Phone', 1);
-    $pdf->Cell(30, 10, 'Pax', 1);
+    $pdf->Cell($columnWidths[0], 10, 'Name', 1);
+    $pdf->Cell($columnWidths[1], 10, 'Phone', 1);
+    $pdf->Cell($columnWidths[2], 10, 'Pax', 1);
     $pdf->Ln();
 
     // Output the data row by row
     while ($row = $resultYes->fetch_assoc()) {
         $pdf->SetX($marginLeft);
         $pdf->SetFont('Arial', '', 12);
-        $pdf->Cell(60, 10, $row['nama'], 1);
-        $pdf->Cell(60, 10, $row['phone'], 1);
-        $pdf->Cell(30, 10, $row['pax'], 1);
+        $pdf->Cell($columnWidths[0], 10, $row['nama'], 1);
+        $pdf->Cell($columnWidths[1], 10, $row['phone'], 1);
+        $pdf->Cell($columnWidths[2], 10, $row['pax'], 1);
         $pdf->Ln();
     }
 } else {
@@ -102,18 +103,18 @@ if ($resultNo->num_rows > 0) {
     // Set table headers and center the table
     $pdf->SetX($marginLeft);
     $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(60, 10, 'Name', 1);
-    $pdf->Cell(60, 10, 'Phone', 1);
-    $pdf->Cell(30, 10, 'Pax', 1);
+    $pdf->Cell($columnWidths[0], 10, 'Name', 1);
+    $pdf->Cell($columnWidths[1], 10, 'Phone', 1);
+    $pdf->Cell($columnWidths[2], 10, 'Pax', 1);
     $pdf->Ln();
 
     // Output the data row by row
     while ($row = $resultNo->fetch_assoc()) {
         $pdf->SetX($marginLeft);
         $pdf->SetFont('Arial', '', 12);
-        $pdf->Cell(60, 10, $row['nama'], 1);
-        $pdf->Cell(60, 10, $row['phone'], 1);
-        $pdf->Cell(30, 10, $row['pax'], 1);
+        $pdf->Cell($columnWidths[0], 10, $row['nama'], 1);
+        $pdf->Cell($columnWidths[1], 10, $row['phone'], 1);
+        $pdf->Cell($columnWidths[2], 10, $row['pax'], 1);
         $pdf->Ln();
     }
 } else {
