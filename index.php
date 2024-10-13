@@ -31,6 +31,7 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,8 +39,12 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
+        <img src="assets/1.png" alt="Top" class="corner-image top zoom-effect">
+        <img src="assets/2.png" alt="Bottom" class="corner-image bottom zoom-effect">
+
         <!-- Event Name and Date -->
         <h1>Majlis Pernikahan Fikri dan Syahirah</h1>
         <p class="event-date">3 December 2024</p>
@@ -87,6 +92,7 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
         <a href="export.php" class="export-btn">Export to PDF</a>
     </div>
 </body>
+
 </html>
 
 <?php

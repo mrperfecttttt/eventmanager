@@ -17,6 +17,12 @@ body {
     min-height: 100vh;
 }
 
+body,
+html {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
 .container {
     width: 90%;
     max-width: 600px;
@@ -39,19 +45,38 @@ h1 {
     margin-bottom: 10px;
 }
 
+/* Image styling */
+.corner-image {
+    position: absolute;
+    width: 350px;
+    /* Adjust size as needed */
+    height: auto;
+}
+
+.bottom {
+    bottom: 0;
+}
+
+.top {
+    top: 0;
+}
+
 .event-date {
     text-align: center;
     font-size: 18px;
     color: #888;
-    margin-bottom: 30px; /* Added more space between the event date and summary */
+    margin-bottom: 30px;
+    /* Added more space between the event date and summary */
 }
 
 /* Separation between sections */
-.summary, .rsvp-management {
+.summary,
+.rsvp-management {
     padding: 20px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    margin-bottom: 30px; /* Separation between sections */
+    margin-bottom: 30px;
+    /* Separation between sections */
     background-color: #f9f9f9;
 }
 
@@ -80,7 +105,8 @@ table {
     overflow: hidden;
 }
 
-table th, table td {
+table th,
+table td {
     padding: 15px 10px;
     text-align: left;
     font-size: 16px;
@@ -142,7 +168,8 @@ table tbody tr:hover {
         font-size: 18px;
     }
 
-    table th, table td {
+    table th,
+    table td {
         font-size: 14px;
         padding: 10px;
     }
@@ -176,4 +203,32 @@ table tbody tr:hover {
 .pagination a:hover {
     background-color: #218838;
     color: white;
+}
+
+
+
+/* EFFECTTTTTTT */
+/* ZOOM IN OUT EFFECTTTT */
+.zoom-effect {
+    animation: zoomInOut 8s infinite;
+}
+
+@keyframes zoomInOut {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1);
+        /* Scale up */
+        opacity: 0.8;
+        /* Slightly faded */
+    }
+
+    100% {
+        transform: scale(1);
+        /* Scale back to original */
+        opacity: 1;
+    }
 }
