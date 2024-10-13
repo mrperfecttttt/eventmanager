@@ -19,12 +19,21 @@ html {
 }
 
 body {
-
+    background-image: url('assets/background.png');
+    background-size: cover;
+    /* Ensures the image covers the entire viewport */
+    background-position: center;
+    /* Centers the image */
+    background-repeat: no-repeat;
+    /* Prevents the image from repeating */
+    background-attachment: fixed;
+    /* Keeps the background fixed in place while scrolling */
     color: #333;
     font-size: 16px;
     line-height: 1.6;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
 }
 
@@ -35,8 +44,6 @@ body {
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    overflow-y: auto;
-    /* Allows scrolling */
 }
 
 .container:hover {
