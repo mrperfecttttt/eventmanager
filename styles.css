@@ -27,7 +27,7 @@ body {
     align-items: flex-start;
     /* Align to the top */
     height: 100vh;
-    padding-top: 220px;
+    padding-top: 240px;
     /* Add padding to push the content down */
     overflow: hidden; /* Prevent scrolling */
 }
