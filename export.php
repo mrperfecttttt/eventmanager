@@ -118,7 +118,7 @@ if ($resultNo->num_rows > 0) {
         $pdf->Ln();
     }
 } else {
-    $pdf->Cell(190, 10, 'No guests have RSVP-ed "No".', 1, 1, 'C');
+    $pdf->Cell(190, 10, 'No guests will missed your event.', 1, 1, 'C');
 }
 
 // Close the database connection
