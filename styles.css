@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-image: url('assets/login-back.png');
+    background-size: cover;
+    /* Ensures the image covers the entire viewport */
+    background-position: center;
+    /* Centers the image */
+    background-repeat: no-repeat;
+    /* Prevents the image from repeating */
+    background-attachment: fixed;
+    /* Keeps the background fixed in place while scrolling */
+}
+
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to the top */
+    height: 100vh;
+    padding-top: 220px; /* Add padding to push the content down */
+}
+
+.container {
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.logo h1 {
+    font-size: 2.5em;
+    color: #333; /* Dark grey for the logo */
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ccc; /* Light grey border */
+    border-radius: 30px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #888; /* Medium grey on focus */
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: #555; /* Dark grey button */
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #777; /* Lighten button on hover */
+}
+
+.signup {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555; /* Dark grey for signup text */
+}
+
+.signup a {
+    color: #555; /* Same dark grey */
+    text-decoration: none;
+}
+
+.signup a:hover {
+    text-decoration: underline;
+}
+
+
+/* FONTTTTTT */
+.afacad-flux-normal {
+    font-family: "Afacad Flux", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "slnt" 0;
+  }
