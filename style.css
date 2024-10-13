@@ -15,9 +15,8 @@ body {
     color: #333;
     font-size: 16px;
     line-height: 1.6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 0;
+    padding: 0;
     min-height: 100vh;
 }
 
@@ -28,6 +27,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    overflow-y: auto; /* Allows scrolling */
 }
 
 .container:hover {
@@ -184,32 +184,4 @@ table tbody tr:hover {
 .pagination a:hover {
     background-color: #218838;
     color: white;
-}
-
-
-
-/* EFFECTTTTTTT */
-/* ZOOM IN OUT EFFECTTTT */
-.zoom-effect {
-    animation: zoomInOut 8s infinite;
-}
-
-@keyframes zoomInOut {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    50% {
-        transform: scale(1.1);
-        /* Scale up */
-        opacity: 0.8;
-        /* Slightly faded */
-    }
-
-    100% {
-        transform: scale(1);
-        /* Scale back to original */
-        opacity: 1;
-    }
 }
