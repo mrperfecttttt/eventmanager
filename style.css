@@ -26,7 +26,6 @@ html {
 .container {
     width: 90%;
     max-width: 600px;
-    background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -61,7 +60,7 @@ h1 {
     border-radius: 8px;
     margin-bottom: 30px;
     /* Separation between sections */
-    background-color: red;
+    background-color: #f9f9f9;
 }
 
 /* Heading style for each section */
