@@ -42,9 +42,6 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
 
 <body>
     <div class="container">
-        <img src="assets/1.png" alt="Top" class="corner-image top zoom-effect">
-        <img src="assets/2.png" alt="Bottom" class="corner-image bottom zoom-effect">
-
         <!-- Event Name and Date -->
         <h1>Majlis Pernikahan Fikri dan Syahirah</h1>
         <p class="event-date">3 December 2024</p>
