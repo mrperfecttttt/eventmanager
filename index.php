@@ -56,6 +56,11 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
 
         <div class="rsvp-management">
             <h2>RSVP Management</h2>
+            <!-- Status Legend -->
+            <div class="status-legend" style="margin-bottom: 10px;">
+                <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background-color: green; margin-right: 5px;"></span> Attending
+                <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background-color: red; margin-left: 20px; margin-right: 5px;"></span> Not Attending
+            </div>
             <table>
                 <thead>
                     <tr>
