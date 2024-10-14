@@ -1,44 +1,54 @@
 <?php
+// Start the session
 session_start();
-include 'db_connect.php';  // Database connection
 
-// Check if form data is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Include the database connection file
+require 'db_connect.php'; // Include your MySQLi connection file
+
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Retrieve username and password from the form
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Protect against SQL injection
-    $username = $conn->real_escape_string($username);
-    $password = $conn->real_escape_string($password);
+    // Simple validation
+    if (empty($username) || empty($password)) {
+        echo 'Username and password are required.';
+        exit;
+    }
 
-    // Query to get user data based on the entered username
-    $sql = "SELECT * FROM users WHERE username = '$username'";
-    $result = $conn->query($sql);
+    // Prepare and bind
+    if ($stmt = $conn->prepare("SELECT password FROM users WHERE username = ?")) {
+        $stmt->bind_param("s", $username); // "s" indicates the type is string
+        $stmt->execute();
+        $stmt->store_result();
 
-    if ($result->num_rows > 0) {
-        // Fetch the user data
-        $user = $result->fetch_assoc();
+        // Check if the username exists
+        if ($stmt->num_rows === 1) {
+            $stmt->bind_result($stored_password);
+            $stmt->fetch();
 
-        // Check if the entered password matches the stored password
-        if ($password === $user['password']) {
-            // Store user information in the session
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['id'] = $user['id'];
-            $_SESSION['db_name'] = $user['db_name'];  // If user has a dedicated database
+            // Compare the plaintext passwords
+            if ($password === $stored_password) {
+                // Store user information in session
+                $_SESSION['username'] = $username;
 
-            // Redirect to the dashboard or any other page after login
-            header("Location: dashboard.php");
-            exit();
+                // Redirect to the dashboard or another page
+                header('Location: dashboard.php'); // Replace with your dashboard page
+                exit;
+            } else {
+                echo 'Invalid username or password.';
+            }
         } else {
-            // Invalid password
-            $error = "Incorrect password.";
+            echo 'Invalid username or password.';
         }
+
+        $stmt->close(); // Close the statement
     } else {
-        // User not found
-        $error = "No user found with that username.";
+        echo 'Database error: ' . $conn->error; // Display any database error
     }
 }
-else {
-    echo 'WOIIIII';
-}
+
+// Close the database connection
+$conn->close();
 ?>
