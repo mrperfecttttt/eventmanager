@@ -1,5 +1,5 @@
 <?php
-session_start();  // Start session (if not already started)
+// session_start();  // Start session (if not already started)
 
 // Static connection values (server, username, and password remain the same)
 $servername = "209.97.172.153"; 
