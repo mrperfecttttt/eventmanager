@@ -11,7 +11,7 @@
         <div class="logo">
             <h1 class="afacad-flux-normal">E-Manager</h1>
         </div>
-        <form>
+        <form action="login_process.php" method="POST">
             <div class="input-group">
                 <input type="text" id="username" placeholder="Username" required>
             </div>
@@ -19,7 +19,7 @@
                 <input type="password" id="password" placeholder="Password" required>
             </div>
             <button type="submit">Login</button>
-            <p class="signup">Don't have an account? <a href="#">Sign Up</a></p>
+            <p class="signup">Don't have an account? Please contact the developer</p>
         </form>
     </div>
 </body>
