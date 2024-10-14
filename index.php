@@ -11,7 +11,7 @@
         <div class="logo">
             <h1 class="afacad-flux-normal">E-Manager</h1>
         </div>
-        <form action="login_action.php" method="POST">
+        <form action="login_pro.php" method="POST">
             <div class="input-group">
                 <input type="text" id="username" name="username" placeholder="Username" required>
             </div>
