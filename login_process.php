@@ -2,8 +2,6 @@
 // session_start();
 include 'db_connect.php';  // Database connection
 
-echo $_SESSION['db_name'];
-
 // Check if form data is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
