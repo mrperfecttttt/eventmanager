@@ -1,9 +1,19 @@
 <?php
+// Enable error reporting for debugging
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Start the session
-// session_start();
+session_start();
 
 // Include the database connection file
 include 'db_connect.php'; // Include your MySQLi connection file
+
+// Check database connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -47,9 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         echo 'Database error: ' . $conn->error; // Display any database error
     }
-}
-else {
-    echo 'woii';
+} else {
+    echo 'Form not submitted.';
 }
 
 // Close the database connection
