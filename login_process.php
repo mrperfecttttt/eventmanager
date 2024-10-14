@@ -3,7 +3,7 @@
 // session_start();
 
 // Include the database connection file
-require 'db_connect.php'; // Include your MySQLi connection file
+include 'db_connect.php'; // Include your MySQLi connection file
 
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
