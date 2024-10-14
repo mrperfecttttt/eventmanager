@@ -48,6 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo 'Database error: ' . $conn->error; // Display any database error
     }
 }
+else {
+    echo 'woii';
+}
 
 // Close the database connection
 $conn->close();
