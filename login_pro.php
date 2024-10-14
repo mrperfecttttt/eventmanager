@@ -5,7 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Start the session
-session_start();
+// session_start();
 
 // Include the database connection file
 include 'db_connect.php'; // Include your MySQLi connection file
