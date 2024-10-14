@@ -38,4 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "No user found with that username.";
     }
 }
+else {
+    echo 'WOIIIII';
+}
 ?>
