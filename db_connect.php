@@ -7,12 +7,12 @@ $username = "admin";
 $password = "P@55w0rd";
 
 // Check if the user is logged in and if their specific database is set in the session
-if (isset($_SESSION['user_database'])) {
+if (isset($_SESSION['database'])) {
     // If the session exists, use the user's specific database
-    $database = $_SESSION['user_database'];
+    $database = $_SESSION['database'];
 } else {
     // If no session, use the default database
-    $database = "app_global";  // The default database for authentication and general data
+    $database = "credentials";  // The default database for authentication and general data
 }
 
 // Create connection to the determined database
