@@ -5,6 +5,7 @@ session_start();  // Start session (if not already started)
 $servername = "209.97.172.153"; 
 $username = "admin"; 
 $password = "P@55w0rd";
+$database = "tunang";
 
 // Check if the user is logged in and if their specific database is set in the session
 if (isset($_SESSION['db_name'])) {
