@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Check if the username exists
         if ($stmt->num_rows === 1) {
-            $stmt->bind_result($stored_password);
+            $stmt->bind_result($stored_password, $db_name);
             $stmt->fetch();
 
             // Compare the plaintext passwords
