@@ -1,6 +1,6 @@
 <?php
 // Start the session
-session_start();
+// session_start();
 
 // Include the database connection file
 require 'db_connect.php'; // Include your MySQLi connection file
