@@ -19,7 +19,7 @@
                 <input type="password" id="password" name="password" placeholder="Password" required>
             </div>
             <button type="submit">Login</button>
-            <p class="signup">Don't have an account? Please contact the developer</p>
+            <p class="signup">Don't have an account? Please contact the developer <?php echo $_SESSION['db_name']?></p>
         </form>
     </div>
 </body>
