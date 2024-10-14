@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Prepare and bind
-    if ($stmt = $conn->prepare("SELECT * FROM users WHERE username = ?")) {
+    if ($stmt = $conn->prepare("SELECT password, db_name FROM users WHERE username = ?")) {
         $stmt->bind_param("s", $username); // "s" indicates the type is string
         $stmt->execute();
         $stmt->store_result();
