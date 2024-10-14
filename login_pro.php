@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($password === $stored_password) {
                 // Store user information in session
                 $_SESSION['username'] = $username;
+                $_SESSION['db_name'] = $db_name;
 
                 // Redirect to the dashboard or another page
                 header('Location: dashboard.php'); // Replace with your dashboard page
