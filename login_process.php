@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 include 'db_connect.php';  // Database connection
 
 // Check if form data is submitted
