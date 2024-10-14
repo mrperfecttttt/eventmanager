@@ -13,10 +13,10 @@
         </div>
         <form action="login_process.php" method="POST">
             <div class="input-group">
-                <input type="text" id="username" placeholder="Username" required>
+                <input type="text" id="username" name="username" placeholder="Username" required>
             </div>
             <div class="input-group">
-                <input type="password" id="password" placeholder="Password" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
             </div>
             <button type="submit">Login</button>
             <p class="signup">Don't have an account? Please contact the developer</p>
