@@ -45,13 +45,12 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script>
     function exportPDF() {
-    // Check if in full screen and exit
-    if (document.fullscreenElement) {
-        document.exitFullscreen().then(() => {
-            window.open('export.php', '_blank'); // Open PDF in a new tab
-        });
-    } else {
-        window.open('export.php', '_blank'); // Open PDF in a new tab
+        function openPdf() {
+        // Replace 'export_pdf.php' with your PDF export script path
+        const pdfUrl = 'export.php';
+        
+        // Open the URL in a new tab
+        window.open(pdfUrl, '_blank');
     }
 }
     </script>
@@ -114,7 +113,7 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
 
         <!-- Link to export the data to Pdf using your existing export.php -->
         <!-- <a href="export.php" class="export-btn" target="_blank">Export to PDF</a> -->
-        <a href="export.php" download class="export-btn">Export to PDF</a>
+        <a href="#" class="export-btn" onclick="openPdf()">Export to PDF</a>
     </div>
 </body>
 
