@@ -51,7 +51,7 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
         <div class="logout-container">
             <a href="logout.php" class="logout-btn">Logout</a>
         </div>
-        
+
         <!-- Event Name and Date -->
         <h1>Majlis Pernikahan Fikri dan Syahirah</h1>
         <p class="event-date">3 December 2024</p>
@@ -101,7 +101,7 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
         </div>
 
         <!-- Link to export the data to Pdf using your existing export.php -->
-        <a href="export.php" class="export-btn">Export to PDF</a>
+        <a href="export.php" class="export-btn" target="_blank">Export to PDF</a>
     </div>
 </body>
 
