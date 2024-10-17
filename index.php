@@ -1,3 +1,14 @@
+<?php
+session_start(); // Start the session
+
+// Check if the user is already logged in
+if (isset($_SESSION['username'])) {
+    // Redirect to dashboard.php
+    header("Location: dashboard.php");
+    exit(); // Ensure no further code is executed after the redirect
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
