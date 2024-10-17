@@ -59,9 +59,9 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
         <div class="summary">
             <h2>Event Summary</h2>
 
-            <p>RSVP Yes: <?php echo $rsvpYes; ?></p>
-            <p>RSVP No: <?php echo $rsvpNo; ?></p>
-            <p>Total Pax: <?php echo $totalPax; ?></p>
+            <p>RSVP Yes: <?php echo $rsvpYes; ?> Guest</p>
+            <p>RSVP No: <?php echo $rsvpNo; ?> Guest</p>
+            <p>Total Pax: <?php echo $totalPax; ?> Person</p>
         </div>
 
         <div class="rsvp-management">
