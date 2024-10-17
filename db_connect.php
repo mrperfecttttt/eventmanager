@@ -6,7 +6,9 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Database connection details
 $servername = "209.97.172.153"; 
+// $servername = "localhost"; 
 $username = "admin"; 
+// $username = "mrperfectt";
 $password = "P@55w0rd"; 
 
 // Determine which database to use

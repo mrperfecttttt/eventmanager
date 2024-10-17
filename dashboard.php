@@ -47,9 +47,11 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
 
 <body>
     <div class="container">
-        <!-- Logout Button -->
-        <a href="logout.php" class="logout-btn">Logout</a>
-
+        <!-- Logout Section -->
+        <div class="logout-container">
+            <a href="logout.php" class="logout-btn">Logout</a>
+        </div>
+        
         <!-- Event Name and Date -->
         <h1>Majlis Pernikahan Fikri dan Syahirah</h1>
         <p class="event-date">3 December 2024</p>

@@ -213,21 +213,21 @@ table tbody tr:hover {
     color: white;
 }
 
-.logout-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: #ff4d4d;
+.logout-container {
+    background-color: #ff4444; /* Red background for the logout section */
     color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-size: 16px;
     font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    text-align: center; /* Center text */
+    padding: 15px; /* Padding for spacing */
+    margin-bottom: 20px; /* Margin below the logout section */
+    border-radius: 5px;
 }
 
-.logout-btn:hover {
-    background-color: #ff3333;
+.logout-btn {
+    background-color: transparent; /* Make the button transparent */
+    color: white;
+    border: none;
+    font-size: 16px; /* Font size */
+    cursor: pointer;
+    text-decoration: none; /* Remove underline */
 }
