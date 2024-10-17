@@ -48,7 +48,7 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
         if (document.fullscreenElement) {
             document.exitFullscreen();
         }
-        window.open('export_pdf.php', '_blank'); // Open PDF in a new tab
+        window.open('export.php', '_blank'); // Open PDF in a new tab
     }
     </script>
 </head>
