@@ -114,7 +114,7 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
 
         <!-- Link to export the data to Pdf using your existing export.php -->
         <!-- <a href="export.php" class="export-btn" target="_blank">Export to PDF</a> -->
-        <a href="javascript:void(0);" onclick="exportPDF()" class="export-btn">Export to PDF</a>
+        <a href="export.php" download class="export-btn">Export to PDF</a>
     </div>
 </body>
 
