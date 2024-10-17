@@ -43,6 +43,14 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
     <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+    function exitFullScreen() {
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        }
+        window.open('export_pdf.php', '_blank'); // Open PDF in a new tab
+    }
+    </script>
 </head>
 
 <body>
@@ -101,7 +109,8 @@ $totalPax = $totalPaxResult->fetch_assoc()['totalPax'];
         </div>
 
         <!-- Link to export the data to Pdf using your existing export.php -->
-        <a href="export.php" class="export-btn" target="_blank">Export to PDF</a>
+        <!-- <a href="export.php" class="export-btn" target="_blank">Export to PDF</a> -->
+        <a href="javascript:void(0);" onclick="exitFullScreen()" class="export-btn">Export to PDF</a>
     </div>
 </body>
 
